@@ -191,3 +191,25 @@ Relazione many-to-many, che va sempre risolta con una tabella ponte (PIVOT)
 - id: INT AI PK NOT NULL UNIQUE INDEX  
 - teacher_id: INT NOT NULL FK (to) teachers(id)  
 - course_id: INT NOT NULL FK (to) courses(id)
+
+
+## Pivot Table: exam_student
+
+<!-- 
+Ogni studente può sostenere molti esami,e ogni esame può essere sostenuto da molti studenti.
+PERTANTO, anche in questo caso la relazione many-to-many va sempre risolta con una tabella pivot (FK):
+
+- student_id (to) FK(exam_student) verso students(id)
+- exam_id (to) FK(exam_student) verso exams(id)
+-->
+
+- id: INT AI PK NOT NULL UNIQUE INDEX  
+- student_id: INT NOT NULL FK → students(id)  
+- exam_id: INT NOT NULL FK → exams(id)  
+- grade: TINYINT NULL  
+- exam_date: DATE NULL
+
+<!-- 
+- grade : voto numerico (da 18 a 30 o 0 se non superato)
+- exam_date : data in cui lo studente ha sostenuto l’esame
+-->
