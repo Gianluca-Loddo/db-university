@@ -87,3 +87,28 @@ cfu = crediti formativi universitari (max 12, TINYINT è sufficiente).
 year e semester aiutano a ordinare i corsi all’interno del piano di studi.
 degree_course_id collega il corso al suo corso di laurea (to) FK.
 -->
+
+
+## Table: teachers
+
+<!--
+Ogni docente appartiene a un dipartimento (es. Ingegneria, Medicina) e può insegnare più corsi.
+Quindi il rapporto è:
+- Un Dipartimento (to) molti Docenti
+- Un Docente (to) un solo Dipartimento
+Pertanto:
+Relazione One-to-Many
+-->
+
+- id: INT AI PK NOT NULL UNIQUE INDEX  
+- department_id: INT NOT NULL FK → departments(id)  
+- first_name: VARCHAR(50) NOT NULL  
+- last_name: VARCHAR(50) NOT NULL  
+- email: VARCHAR(100) NOT NULL UNIQUE  
+- phone: VARCHAR(15) NULL  
+- office: VARCHAR(50) NULL  
+- academic_title: VARCHAR(50) NULL
+
+<!--
+department_id lega ogni docente al proprio dipartimento
+-->
