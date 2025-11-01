@@ -170,3 +170,24 @@ teacher_id : collega l’esame al docente (One-to-Many)
 - DATE è un tipo di dato temporale che memorizza solo la data (senza orario)
 - TEXT per eventuali note (es. “solo studenti del 3° anno”)
 -->
+
+## Pivot Table: course_teacher
+
+<!-- 
+Un docente può insegnare più corsi, e un corso può essere insegnato da più docenti.
+
+Pertanto:
+
+Relazione many-to-many, che va sempre risolta con una tabella ponte (PIVOT)
+
+- teacher_id (to) FK(course_teacher) verso teachers(id)
+- course_id (to) FK(course_teacher) verso courses(id)
+
+- È chiamata “pivot table” perché “fa da ponte” tra due tabelle
+- Ogni riga indica un docente che insegna un corso specifico
+- Le FK garantiscono che non si possano inserire docenti o corsi inesistenti
+-->
+
+- id: INT AI PK NOT NULL UNIQUE INDEX  
+- teacher_id: INT NOT NULL FK (to) teachers(id)  
+- course_id: INT NOT NULL FK (to) courses(id)
