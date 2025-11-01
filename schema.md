@@ -101,7 +101,7 @@ Relazione One-to-Many
 -->
 
 - id: INT AI PK NOT NULL UNIQUE INDEX  
-- department_id: INT NOT NULL FK → departments(id)  
+- department_id: INT NOT NULL FK (to) departments(id)  
 - first_name: VARCHAR(50) NOT NULL  
 - last_name: VARCHAR(50) NOT NULL  
 - email: VARCHAR(100) NOT NULL UNIQUE  
