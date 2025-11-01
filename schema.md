@@ -129,7 +129,7 @@ Relazione One-to-Many
 -->
 
 - id: INT AI PK NOT NULL UNIQUE INDEX  
-- degree_course_id: INT NOT NULL FK → degree_courses(id)  
+- degree_course_id: INT NOT NULL FK (to) degree_courses(id)  
 - first_name: VARCHAR(50) NOT NULL  
 - last_name: VARCHAR(50) NOT NULL  
 - email: VARCHAR(100) NOT NULL UNIQUE  
@@ -142,4 +142,31 @@ Relazione One-to-Many
 - degree_course_id lega ogni studente al suo corso di laurea
 - registration_number è la matricola, un codice identificativo univoco
 - email deve essere unica (come per i docenti)
+-->
+
+## Table: exams
+
+<!-- 
+Ogni esame rappresenta una sessione per un determinato corso (insegnamento), tenuta da un docente e valida per uno o più studenti,
+MA:
+- un corso può avere molte sessioni d’esame (una per ogni appello),
+- un docente può tenere molti esami,
+- ogni esame può essere sostenuto da molti studenti (gestiremo questo dopo, con una tabella ponte exam_student).
+
+RELAZIONI PRINCIPALI: 
+course_id : collega l’esame al corso (One-to-Many)
+teacher_id : collega l’esame al docente (One-to-Many)
+-->
+
+- id: INT AI PK NOT NULL UNIQUE INDEX  
+- course_id: INT NOT NULL FK (to) courses(id)  
+- teacher_id: INT NOT NULL FK (to) teachers(id)  
+- date: DATE NOT NULL  
+- classroom: VARCHAR(50) NULL  
+- notes: TEXT NULL
+
+<!-- 
+- course_id e teacher_id sono foreign keys, quindi l’esame appartiene a un corso ed è tenuto da un docente
+- DATE è un tipo di dato temporale che memorizza solo la data (senza orario)
+- TEXT per eventuali note (es. “solo studenti del 3° anno”)
 -->
