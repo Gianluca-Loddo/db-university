@@ -21,10 +21,10 @@ Questa tabella rappresenta le macro-aree organizzative (dipartimenti) dell’uni
 - website: VARCHAR(150) NULL
 
 <!-- 
-AI = Auto Increment : incrementa automaticamente l’id
-PK = Primary Key : identifica in modo univoco ogni riga
-INDEX migliora le ricerche, ma non è obbligatorio
-Campi NULL sono facoltativi (non sempre ogni dipartimento ha un sito o telefono)
+- AI = Auto Increment : incrementa automaticamente l’id
+- PK = Primary Key : identifica in modo univoco ogni riga
+- INDEX migliora le ricerche, ma non è obbligatorio
+- Campi NULL sono facoltativi (non sempre ogni dipartimento ha un sito o telefono)
 -->
 
 
@@ -51,10 +51,10 @@ Relazione One-to-Many
 - description: TEXT NULL
 
 <!-- 
-department_id è la foreign key (to) collega ogni corso a un dipartimento
-TINYINT è perfetto per numeri piccoli (1–255), come la durata in anni
-SMALLINT per valori medi (crediti totali, massimo 32.767)
-TEXT per descrizioni libere
+- department_id è la foreign key (to) collega ogni corso a un dipartimento
+- TINYINT è perfetto per numeri piccoli (1–255), come la durata in anni
+- SMALLINT per valori medi (crediti totali, massimo 32.767)
+- TEXT per descrizioni libere
 -->
 
 
@@ -82,10 +82,10 @@ Relazione One-to-Many
 - description: TEXT NULL
 
 <!--
-code serve come abbreviazione univoca (es. “MAT101”).
-cfu = crediti formativi universitari (max 12, TINYINT è sufficiente).
-year e semester aiutano a ordinare i corsi all’interno del piano di studi.
-degree_course_id collega il corso al suo corso di laurea (to) FK.
+- code serve come abbreviazione univoca (es. “MAT101”).
+- cfu = crediti formativi universitari (max 12, TINYINT è sufficiente).
+- year e semester aiutano a ordinare i corsi all’interno del piano di studi.
+- degree_course_id collega il corso al suo corso di laurea (to) FK.
 -->
 
 
@@ -111,4 +111,35 @@ Relazione One-to-Many
 
 <!--
 department_id lega ogni docente al proprio dipartimento
+-->
+
+## Table: students
+
+<!-- 
+Ogni studente:
+- è iscritto a un corso di laurea,
+- ha dati anagrafici,
+- una matricola univoca.
+
+La relazione è:
+- Un Corso di Laurea (to) molti Studenti
+- Uno Studente (to) un solo Corso di Laurea
+Pertanto:
+Relazione One-to-Many
+-->
+
+- id: INT AI PK NOT NULL UNIQUE INDEX  
+- degree_course_id: INT NOT NULL FK → degree_courses(id)  
+- first_name: VARCHAR(50) NOT NULL  
+- last_name: VARCHAR(50) NOT NULL  
+- email: VARCHAR(100) NOT NULL UNIQUE  
+- registration_number: CHAR(6) NOT NULL UNIQUE  
+- date_of_birth: DATE NULL  
+- phone: VARCHAR(15) NULL  
+- address: VARCHAR(100) NULL
+
+<!-- 
+- degree_course_id lega ogni studente al suo corso di laurea
+- registration_number è la matricola, un codice identificativo univoco
+- email deve essere unica (come per i docenti)
 -->
