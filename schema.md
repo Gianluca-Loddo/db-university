@@ -204,8 +204,8 @@ PERTANTO, anche in questo caso la relazione many-to-many va sempre risolta con u
 -->
 
 - id: INT AI PK NOT NULL UNIQUE INDEX  
-- student_id: INT NOT NULL FK → students(id)  
-- exam_id: INT NOT NULL FK → exams(id)  
+- student_id: INT NOT NULL FK (to) students(id)  
+- exam_id: INT NOT NULL FK (to) exams(id)  
 - grade: TINYINT NULL  
 - exam_date: DATE NULL
 
